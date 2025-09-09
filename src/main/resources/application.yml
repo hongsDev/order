@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop
+    #url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+data:
+  redis:
+    host: localhost
+    port: 6379
+
+  jpa:
+    hibernate:
+      #ddl-auto: create
+      #ddl-auto: create-drop
+      ddl-auto: update
+      #ddl-auto: validate
+      #ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        #default_batch_fetch_size: 1000 #최적화 옵션
+logging:
+  level:
+    root: INFO
+    com.hongsdev: DEBUG
+
+
