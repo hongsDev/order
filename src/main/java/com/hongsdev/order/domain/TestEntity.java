@@ -12,6 +12,8 @@ public class TestEntity {
     @GeneratedValue
     @Column(name = "test_id")
     private Long id;
+
+    private String name;
 }
 
 
