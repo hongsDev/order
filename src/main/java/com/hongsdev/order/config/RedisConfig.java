@@ -23,6 +23,10 @@ public class RedisConfig {
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new Jackson2JsonRedisSerializer<Object>(Object.class));
 
+
+
+
+
         return template;
     }
 
