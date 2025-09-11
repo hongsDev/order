@@ -16,6 +16,8 @@ public class TestEntity {
     private String name;
 
     private String password;
+
+    private String keyword;
 }
 
 
