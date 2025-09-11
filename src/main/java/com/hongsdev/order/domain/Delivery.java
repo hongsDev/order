@@ -19,6 +19,7 @@ public class Delivery {
     @Embedded
     private Address address;
 
+
     @Enumerated
     private DeliveryStatus status;
 
