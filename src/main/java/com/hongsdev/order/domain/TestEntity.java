@@ -18,6 +18,8 @@ public class TestEntity {
     private String password;
 
     private String keyword;
+
+    private String thirdParty;
 }
 
 
