@@ -14,6 +14,12 @@ public class TestEntity {
     private Long id;
 
     private String name;
+
+    private String password;
+
+    private String keyword;
+
+    private String thirdParty;
 }
 
 
