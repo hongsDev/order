@@ -18,8 +18,6 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class MemberService {
     private final MemberRepository memberRepository;
-
-
     @Transactional
     public void create(MemberInDto member) {
         Member saveMember =  Member.createMember(member.getUsername(), member.getPassword());
