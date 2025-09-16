@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class OrderInDto {
+    private Long orderId;
     private Long memberId;
 
     private String city;

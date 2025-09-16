@@ -20,9 +20,6 @@ public class RedisConfig {
         template.setConnectionFactory(redisConnectionFactory);
 
 
-        //주석 적용 테스트
-        //1234
-
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new Jackson2JsonRedisSerializer<Object>(Object.class));
 

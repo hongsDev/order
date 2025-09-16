@@ -2,10 +2,7 @@ package com.hongsdev.order.servie;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hongsdev.order.domain.Address;
-import com.hongsdev.order.domain.Delivery;
-import com.hongsdev.order.domain.Member;
-import com.hongsdev.order.domain.Order;
+import com.hongsdev.order.domain.*;
 import com.hongsdev.order.domain.dto.MemberInDto;
 import com.hongsdev.order.domain.dto.OrderInDto;
 import com.hongsdev.order.domain.dto.OrderOutDto;
@@ -19,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -39,13 +37,23 @@ public class OrderService {
     public Long save(OrderInDto orderInDto) {
         Member member = memberRepository.findById(orderInDto.getMemberId()).orElseThrow();
         Delivery delivery = Delivery.createDelivery(new Address(orderInDto.getCity(), orderInDto.getStreet(), orderInDto.getZipcode()));
+        Item item = new Item();
+        item.setName("test");
+        item.setStock(30);
 
-        Order order = Order.createOrder(member, delivery);
+        OrderItem orderItem = OrderItem.createOrderItem(item, 3, 3000);
+        List<OrderItem> orderItems = new ArrayList<>();
+
+        Order order = Order.createOrder(member, delivery, orderItems);
         orderRepository.save(order);
 
         return order.getId();
     }
 
+    public void cancel(OrderInDto orderInDto) {
+        Optional<Order> cancelOrder = orderRepository.findById(orderInDto.getOrderId());
+        cancelOrder.orElseThrow().cancel();
+    }
 
     public List<OrderOutDto> findAll() {
         try {
@@ -69,6 +77,7 @@ public class OrderService {
             throw new RuntimeException();
         }
     }
+
     public void evictCache() {
         redisTemplate.delete(CACHE_KEY);
     }
