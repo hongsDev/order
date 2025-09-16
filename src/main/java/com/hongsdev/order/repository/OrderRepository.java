@@ -12,4 +12,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("select o from Order o join fetch o.member join fetch o.delivery where o.member.id = :memberId")
     public List<Order> findByMemberId2(@Param("memberId") Long memberId);
+
+
 }

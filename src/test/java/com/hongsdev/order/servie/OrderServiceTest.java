@@ -26,7 +26,7 @@ public class OrderServiceTest {
     private OrderService orderService;
 
     @Test
-    public void TEST1() {
+    public void 주문저장() {
         OrderInDto order = new OrderInDto();
         order.setMemberId(1L);
         order.setCity("test1");
@@ -37,18 +37,27 @@ public class OrderServiceTest {
         Assertions.assertThat(orderId).isNotNull();
     }
 
+
     @Test
-    public void TEST2() {
-        orderService.findAll();
+    public void 주문취소() {
+        Long orderId = 1L;
+        OrderInDto orderInDto = new OrderInDto();
+        orderInDto.setOrderId(orderId);
+
+        orderService.cancel(orderInDto);
+
 
     }
 
     @Test
-    public void TEST3() {
+    public void 전제조회() {
+        orderService.findAll();
+    }
+
+    @Test
+    public void 회원주문내역조회() {
         OrderInDto order = new OrderInDto();
         order.setMemberId(52L);
-
         orderService.findByMember(order);
-
     }
 }
