@@ -21,19 +21,25 @@ public class OrderItem {
     private Item item;
 
 
+    private int count;
+    private int price;
+
     public void addItem(Item item) {
         this.item = item;
         item.getOrderItems().add(this);
     }
 
-    private int count;
-    private int price;
+    public void cancel() {
+        item.addStock(this.count);
+    }
 
     public static OrderItem createOrderItem(Item item, int count, int price) {
         OrderItem orderItem = new OrderItem();
         orderItem.addItem(item);
         orderItem.setCount(count);
         orderItem.setPrice(price);
+
+        item.removeStock(count);
 
         return orderItem;
     }

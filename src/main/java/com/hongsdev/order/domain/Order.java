@@ -69,7 +69,14 @@ public class Order {
 
     //취소 비즈니스 메소드
     public void cancel() {
+        if (delivery.getStatus() == DeliveryStatus.COMP) {
+            throw new IllegalStateException("이미 배송완료");
+        }
+
         this.status = OrderStatus.CANCEL;
+        for (OrderItem orderItem : this.orderItems) {
+            orderItem.cancel();
+        }
 
     }
 

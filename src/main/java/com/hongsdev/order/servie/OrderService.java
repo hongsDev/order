@@ -43,6 +43,7 @@ public class OrderService {
 
         OrderItem orderItem = OrderItem.createOrderItem(item, 3, 3000);
         List<OrderItem> orderItems = new ArrayList<>();
+        orderItems.add(orderItem);
 
         Order order = Order.createOrder(member, delivery, orderItems);
         orderRepository.save(order);

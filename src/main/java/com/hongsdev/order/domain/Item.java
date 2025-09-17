@@ -22,5 +22,13 @@ public class Item {
     private String name;
     private int stock;
 
+    public void addStock(int count) {
+        this.stock += count;
+    }
+
+    public void removeStock(int count) {
+        this.stock -= count;
+    }
+
 
 }
