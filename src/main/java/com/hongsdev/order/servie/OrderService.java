@@ -6,6 +6,7 @@ import com.hongsdev.order.domain.*;
 import com.hongsdev.order.domain.dto.MemberInDto;
 import com.hongsdev.order.domain.dto.OrderInDto;
 import com.hongsdev.order.domain.dto.OrderOutDto;
+import com.hongsdev.order.domain.enumType.OrderStatus;
 import com.hongsdev.order.repository.MemberRepository;
 import com.hongsdev.order.repository.OrderRepository;
 import com.hongsdev.order.util.RedisUtil;
@@ -66,6 +67,7 @@ public class OrderService {
 
             List<OrderOutDto> result = orderRepository.findAll()
                     .stream()
+                    .filter(order->order.getStatus().equals(OrderStatus.ORDER))
                     .map(order -> new OrderOutDto(order.getId(), order.getMember().getUsername(), order.getStatus(), order.getDelivery().getStatus()))
                     .collect(Collectors.toList());
 
