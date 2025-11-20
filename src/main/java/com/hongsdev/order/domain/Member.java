@@ -1,37 +1,23 @@
 package com.hongsdev.order.domain;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@Table(name = "members")
-public class Member {
-    @Id
-    @GeneratedValue
-    @Column(name = "member_id")
+public class Member extends BaseEntity {
+
     private Long id;
 
     private String username;
-    private String password;
+
+    private String age;
+
+    private String phoneNumber;
+
 
     @OneToMany(mappedBy = "member")
-    public List<Order> orders = new ArrayList<>();
-
-    public void addOrder(Order order) {
-        orders.add(order);
-    }
-
-    public static Member createMember(String username, String password) {
-        Member member = new Member();
-        member.setUsername(username);
-        member.setPassword(password);
-
-        return member;
-    }
+    private List<Reservation> reservations = new ArrayList<>();
 }

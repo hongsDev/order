@@ -1,7 +1,12 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /hong
+
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/jpashop
-    #url: jdbc:h2:mem:testdb
+    #url: jdbc:h2:tcp://localhost/~/jpashop
+    url: jdbc:h2:mem:testdb
     username: sa
     password:
     driver-class-name: org.h2.Driver
